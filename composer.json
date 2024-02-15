@@ -1,7 +1,7 @@
 {
     "name": "ihtisham467/laravel-permission-editor",
     "description": "Visual UI for managing Roles/Permissions for Spatie Laravel Permission package",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "type": "laravel-package",
     "license": "MIT",
     "autoload": {
