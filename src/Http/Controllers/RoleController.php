@@ -30,7 +30,10 @@ class RoleController extends Controller
 
         $role = Role::create(['name' => $request->input('name')]);
 
-        $role->givePermissionTo($request->input('permissions'));
+        if(is_array($request->input('permissions')) && count($request->input('permissions')) > 0) {
+            $permissions = Permission::whereIn('id', $request->input('permissions'))->get();
+            $role->givePermissionTo($permissions);
+        }
 
         return redirect()->route('permission-editor.roles.index');
     }
@@ -51,7 +54,10 @@ class RoleController extends Controller
 
         $role->update(['name' => $request->input('name')]);
 
-        $role->syncPermissions($request->input('permissions'));
+        if(is_array($request->input('permissions')) && count($request->input('permissions')) > 0) {
+            $permissions = Permission::whereIn('id', $request->input('permissions'))->get();
+            $role->givePermissionTo($permissions);
+        }
 
         return redirect()->route('permission-editor.roles.index');
     }
